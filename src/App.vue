@@ -7,21 +7,34 @@
       <h2>Carb Manager Dev Assignment</h2>
       <p>See the README file for assignment requirements.</p>
 
-      <div class="premium-recipe-wrapper">
-        <PremiumRecipeCard />
-      </div>
+      <ul>
+        <li v-for="recipe in recipes" :key="recipe" class="premium-recipe">
+          <PremiumRecipeCard :id="recipe" />
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
 import PremiumRecipeCard from "./components/PremiumRecipeCard.vue";
+import { getRecipes, getUserSettings } from "../src/api";
 
 export default {
   name: "App",
+
   components: {
     PremiumRecipeCard
-  }
+  },
+
+  async created() {
+    console.log("recipes", await getRecipes());
+    console.log("user settings", await getUserSettings());
+  },
+
+  data: () => ({
+    recipes: ["Premium", "recipes", "list", "goes", "here"]
+  })
 };
 </script>
 
@@ -52,9 +65,10 @@ export default {
 }
 
 /** Remove these styles when done */
-.premium-recipe-wrapper {
-  margin-top: 100px;
+.premium-recipe {
+  margin-top: 24px;
   border: 2px dashed red;
   padding: 16px;
+  list-style: none;
 }
 </style>

@@ -1,3 +1,14 @@
 <template>
-  <div>Premium Recipe Card Component Goes Here</div>
+  <div>{{ id }}</div>
 </template>
+
+<script>
+export default {
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  }
+};
+</script>
