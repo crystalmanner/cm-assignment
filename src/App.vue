@@ -18,18 +18,12 @@
 
 <script>
 import PremiumRecipeCard from "./components/PremiumRecipeCard.vue";
-import { getRecipes, getUserSettings } from "../src/api";
 
 export default {
   name: "App",
 
   components: {
     PremiumRecipeCard
-  },
-
-  async created() {
-    console.log("recipes", await getRecipes());
-    console.log("user settings", await getUserSettings());
   },
 
   data: () => ({

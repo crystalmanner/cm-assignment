@@ -22,16 +22,17 @@
 
 ### Data
 
-- There are 2 sources of data. They both pretend to be async HTTP call.
-  - `getRecipes` - returns recipes data. It returns an object with `success` and `data` fields. Recipes may contain energy information in `kcal` or in `kJ`. 1 `kcal` = 4.184 `kJ`.
-  - `getUserSettings` returns user settings. The object contains the `energyUnits` field. Use this field to determine user preferences for energy units display.
-- Transform the data if required
+- The data is served by a local HTTP server listening on `http://127.0.0.1:3000`. There are 2 endpoints:
+  - `http://127.0.0.1:3000/recipes` - returns recipes data. Recipes may contain energy information in `kcal` or in `kJ`. 1 `kcal` = 4.184 `kJ`.
+  - `http://127.0.0.1:3000/user` returns user settings. The object contains the `energyUnits` field which may be either `calories` or `kJ`. Use this field to determine user preferences for energy units display.
+- Data fixtures are defined in `./server/db.js`. Do not modify them.
+- The server is configured to respond with HTTP error 500 sometimes. Take it into account.
 - Use that data to render a list of premium recipe cards.
 
 ### UI
 
 - Translate the design as closely as possible to custom CSS. We've also provided hover styles for you to replicate.
-- Use SVG's for the custom icons. These can be grabbed from the Figma file.
+- Use SVG-s for the custom icons. These can be grabbed from the Figma file.
 - Make sure the Recipe title gets truncated after 2 lines
 - The star ratings should be able to work with half-stars.
 - If a recipe duration is longer than 60 minutes, the format should be `x hr x min`
@@ -77,16 +78,10 @@ You can send that over to us via email/Slack when you are done with the assignme
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and hot-reloads for development.
 
 ```
 yarn serve
-```
-
-### Run Storybook
-
-```
-yarn storybook
 ```
 
 ### Run your unit tests
