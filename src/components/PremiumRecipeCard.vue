@@ -1,7 +1,5 @@
 <template>
-  <code style="text-align: left">
-    <pre>{{ id }}</pre>
-  </code>
+  <div>{{ id }}</div>
 </template>
 
 <script>
