@@ -22,29 +22,26 @@
 
 ### Data
 
-- Retrieve the recipe JSON data via HTTP from https://60c10ba2b8d367001755666e.mockapi.io/recipe/1
-- Transform the data if required
-- Use that data to render the `<PremiumRecipeCard>` component
+- The data is served by a local HTTP server listening on `http://127.0.0.1:3000`. There are 2 endpoints:
+  - `http://127.0.0.1:3000/recipes` - returns recipes data. Recipes may contain energy information in `kcal` or in `kJ`. 1 `kcal` = 4.184 `kJ`.
+  - `http://127.0.0.1:3000/user` returns user settings. The object contains the `energyUnits` field which may be either `calories` or `kJ`. Use this field to determine user preferences for energy units display.
+- Data fixtures are defined in `./server/db.js`. Do not modify them.
+- The server is configured to respond with HTTP error 500 sometimes. Take it into account.
+- Use that data to render a list of premium recipe cards.
 
 ### UI
 
 - Translate the design as closely as possible to custom CSS. We've also provided hover styles for you to replicate.
-- Use SVG's for the custom icons. These can be grabbed from the Figma file.
+- Use SVG-s for the custom icons. These can be grabbed from the Figma file.
 - Make sure the Recipe title gets truncated after 2 lines
 - The star ratings should be able to work with half-stars.
 - If a recipe duration is longer than 60 minutes, the format should be `x hr x min`
-- Add an `energy-units` prop which will take either `calories` (default) or `kilojoules`. This will determine which energy value/unit to display. 1 calorie = 4.184 kJ. The number value passed in as a prop will always represent calories, so if `kilojoules` is selected, a conversion needs to take place.
+- Make sure that energy information is displayed based on user settings (either as `calories` or `kJ`)
 
 ### Interactions
 
-- The whole card will be clickable. Make sure that the event is working properly. You should see a "clicked" message in the Storybook "actions" tab when clicking on the component.
+- The whole card will be clickable. Make sure that the event is working properly.
 - Because the whole card is clickable, the "heart" icon in the top right won't be interactive. Instead, it should be empty or filled in depending on a certain prop value.
-
-### Storybook
-
-Create a Storybook story to view the component in isolation and to be able to interact with all available props.
-
-There is a `PremiumRecipeCard.stories.js` placeholder file that you can use to get started. Take a look at the [addon-knobs](https://www.npmjs.com/package/@storybook/addon-knobs) documentation to help you get started if you are unfamiliar with Storybook.
 
 ### Tests
 
@@ -56,8 +53,8 @@ There is a `PremiumRecipeCard.spec.js` file which you can use to write some test
 
 - **Clone** the repo (not fork) to get started. Please don't create everything with just one commit. We would love to see how you structure your commits.
 - Don't feel like you have to stay within the placeholder files. If you want to create some helper/utility functions, go ahead and create the appropriate file/folders for that.
-- If you see any elements inside of this Recipe Card design that could be useful to re-use in other areas, feel free to split them out into their own sub components. Don't overengineer it by breaking every single element out, but there might be some that would be better off as small, re-usable components.
-- If you do decide to create sub components, bonus points for creating their own stories & tests :)
+- Feel free to use any tool, library or tune the project (including the setup files) to fit your needs. 
+- If you see any elements inside of this Recipe Card design that could be useful to re-use in other areas, feel free to split them out into their own sub components.
 - Macro dots
   - Red: Carbs
   - Blue: Protein
@@ -81,16 +78,10 @@ You can send that over to us via email/Slack when you are done with the assignme
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and hot-reloads for development.
 
 ```
 yarn serve
-```
-
-### Run Storybook
-
-```
-yarn storybook
 ```
 
 ### Run your unit tests
