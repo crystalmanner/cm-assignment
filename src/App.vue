@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <div class="cm-container">
-      <div class="cm-logo-wrapper">
+      <div class="cm-logo-wrapper text-center">
         <img
           alt="Carb Manager"
           src="./assets/images/cm-logo.svg"
           class="cm-logo"
         />
       </div>
-      <h2>Carb Manager Dev Assignment</h2>
+      <h2 class="text-center">Carb Manager Dev Assignment</h2>
       <div class="d-flex space-between">
         <PremiumRecipeCard
           v-for="recipe in recipes"

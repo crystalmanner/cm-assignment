@@ -1,23 +1,50 @@
 <template>
-  <div class="recipe-card mb-4">
+  <div
+    class="recipe-card mb-4"
+    @click="handleClickRecipeCard($event, recipeData.id)"
+  >
     <div
       class="recipe-image-area position-relative"
       :style="{ 'background-image': 'url(' + recipeData.images[0].url + ')' }"
     ></div>
-    <div class="recipe-body">
-      <h3 class="recipe-title">{{ recipeData.title }}</h3>
-      <div class="recipe-rating-area"></div>
+    <div class="recipe-body pt-2 px-3 pb-3">
+      <h3 class="recipe-title my-0" :title="recipeData.title">
+        {{ recipeData.title }}
+      </h3>
+      <div class="recipe-rating-area d-flex mt-3">
+        <StarRating
+          :rate="recipeData.rating.score"
+          inactiveColor="#AAAEB3"
+          activeColor="#FDA01E"
+          :readOnly="true"
+          :starSize="12"
+          :padding="2"
+        />
+        <p class="recipe-rating-count my-0 ml-2">
+          {{ recipeData.rating.count }} ratings
+        </p>
+      </div>
       <div class="recipe-energy-area"></div>
     </div>
   </div>
 </template>
 
 <script>
+import StarRating from "./StarRating.vue";
+
 export default {
   props: {
     recipeData: {
       type: Object,
       required: true
+    }
+  },
+  components: {
+    StarRating
+  },
+  methods: {
+    handleClickRecipeCard(event, id) {
+      console.log(event.target, `${"recipe card " + id + " clicked"}`);
     }
   }
 };
@@ -34,6 +61,7 @@ export default {
   box-shadow: 0px 13px 35px rgba(0, 30, 47, 0.1);
 
   &:hover {
+    cursor: pointer;
     .recipe-image-area {
       opacity: 0.8;
     }
@@ -49,6 +77,32 @@ export default {
     );
     background-position: center;
     background-size: cover;
+  }
+  .recipe-body {
+    .recipe-title {
+      display: -webkit-box;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 20px;
+      color: #0c0c0a;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .recipe-rating-area {
+      .vue-star-rating {
+        line-height: 12px;
+      }
+      .recipe-rating-count {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 14px;
+        color: #1ca677;
+      }
+    }
   }
 }
 </style>
