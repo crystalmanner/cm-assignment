@@ -5,14 +5,16 @@
   >
     <div
       class="recipe-image-area position-relative"
-      :style="{ 'background-image': 'url(' + recipeData.images[0].url + ')' }"
+      :style="{
+        'background-image': 'url(' + recipeData.images[0].url + ')'
+      }"
     >
       <img
         alt="heart icon"
         :src="require('../assets/images/' + getHeartIconUrl + '.svg')"
         class="position-absolute top-3 right-3"
       />
-      <LabelWithImageIcon
+      <LabelWithIcon
         v-if="recipeData.isPremium"
         :imageIconSrc="require('../assets/images/trophy.svg')"
         imageIconAlt="trophy icon"
@@ -31,7 +33,7 @@
         {{ recipeData.title }}
       </h3>
       <div class="recipe-rating-area d-flex mt-3">
-        <StarRating
+        <RecipeStarRating
           :rate="recipeData.rating.score"
           inactiveColor="#AAAEB3"
           activeColor="#FDA01E"
@@ -45,7 +47,7 @@
       </div>
       <div class="recipe-detail-area d-flex mt-2">
         <div class="recipe-normal-info d-flex align-center">
-          <LabelWithImageIcon
+          <LabelWithIcon
             :imageIconSrc="require('../assets/images/clock.svg')"
             imageIconAlt="clock icon"
             :isShowIcon="true"
@@ -53,7 +55,7 @@
             type="image"
             labelType="time"
           />
-          <LabelWithImageIcon
+          <LabelWithIcon
             :imageIconSrc="require('../assets/images/cals.svg')"
             imageIconAlt="cals icon"
             :isShowIcon="true"
@@ -65,7 +67,7 @@
           />
         </div>
         <div class="recipe-nutrient-info ml-auto d-flex align-item">
-          <LabelWithImageIcon
+          <LabelWithIcon
             v-for="(nutrient, index) in nutrients"
             :key="index"
             :isShowIcon="true"
@@ -84,8 +86,8 @@
 </template>
 
 <script>
-import StarRating from "./StarRating.vue";
-import LabelWithImageIcon from "./LabelWithImageIcon.vue";
+import RecipeStarRating from "./RecipeStarRating.vue";
+import LabelWithIcon from "./LabelWithIcon.vue";
 
 export default {
   props: {
@@ -99,8 +101,8 @@ export default {
     }
   },
   components: {
-    StarRating,
-    LabelWithImageIcon
+    RecipeStarRating,
+    LabelWithIcon
   },
   data: () => ({
     nutrients: ["carbs", "proteins", "fats"]
