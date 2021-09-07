@@ -14,6 +14,7 @@
           v-for="recipe in recipes"
           :key="recipe.id"
           :recipeData="recipe"
+          :userInfo="userInfo"
         />
       </div>
     </div>

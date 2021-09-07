@@ -14,6 +14,10 @@
   flex-wrap: wrap;
 }
 
+.align-center {
+  align-items: center;
+}
+
 .position-relative {
   position: relative;
 }
@@ -46,12 +50,24 @@
   margin-bottom: 32px;
 }
 
+.mt-2 {
+  margin-top: 8px;
+}
+
 .mt-3 {
   margin-top: 16px;
 }
 
 .ml-2 {
   margin-left: 8px;
+}
+
+.ml-3 {
+  margin-left: 16px;
+}
+
+.mr-2 {
+  margin-right: 8px;
 }
 
 .p-1 {

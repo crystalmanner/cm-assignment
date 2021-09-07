@@ -24,23 +24,49 @@
           {{ recipeData.rating.count }} ratings
         </p>
       </div>
-      <div class="recipe-energy-area"></div>
+      <div class="recipe-detail-area d-flex">
+        <div class="recipe-normal-info mt-2 d-flex align-center">
+          <LabelWithImageIcon
+            :imageIconSrc="require('../assets/images/clock.svg')"
+            imageIconAlt="clock icon"
+            :isShowIcon="true"
+            :labelTxt="recipeData.preparationTimeMinutes"
+            type="time"
+          />
+          <LabelWithImageIcon
+            :imageIconSrc="require('../assets/images/cals.svg')"
+            imageIconAlt="cals icon"
+            :isShowIcon="true"
+            :labelTxt="recipeData.details.energy + ' ' + userInfo.energyUnits"
+            type="text"
+            imageIconSize="12px"
+            class="ml-3"
+          />
+        </div>
+        <div class="recipe-nutrient-info"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import StarRating from "./StarRating.vue";
+import LabelWithImageIcon from "./LabelWithImageIcon.vue";
 
 export default {
   props: {
     recipeData: {
       type: Object,
       required: true
+    },
+    userInfo: {
+      type: Object,
+      required: true
     }
   },
   components: {
-    StarRating
+    StarRating,
+    LabelWithImageIcon
   },
   methods: {
     handleClickRecipeCard(event, id) {
