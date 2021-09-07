@@ -2,13 +2,19 @@
   <div id="app">
     <div class="cm-container">
       <div class="cm-logo-wrapper">
-        <img alt="Carb Manager" src="./assets/cm-logo.svg" class="cm-logo" />
+        <img
+          alt="Carb Manager"
+          src="./assets/images/cm-logo.svg"
+          class="cm-logo"
+        />
       </div>
       <h2>Carb Manager Dev Assignment</h2>
-      <div>
-        <div v-for="recipe in recipes" :key="recipe.id" class="premium-recipe">
-          <PremiumRecipeCard :recipeData="recipe" />
-        </div>
+      <div class="d-flex space-between">
+        <PremiumRecipeCard
+          v-for="recipe in recipes"
+          :key="recipe.id"
+          :recipeData="recipe"
+        />
       </div>
     </div>
   </div>
@@ -43,7 +49,6 @@ export default {
     fetchUserInfo() {
       Request.get(USER_INFO)
         .then(res => {
-          console.log(res, "userinfo");
           this.userInfo = res;
         })
         .catch(err => {
@@ -54,7 +59,6 @@ export default {
     fetchRecipes() {
       Request.get(RECIPES)
         .then(res => {
-          console.log(res, "recipes");
           this.recipes = res;
         })
         .catch(err => {
@@ -65,17 +69,6 @@ export default {
   }
 };
 </script>
-
-<style>
-#app {
-  font-family: "proxima-nova", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
 
 <style scoped>
 .cm-logo-wrapper {
