@@ -6,5 +6,5 @@ export function getHoursAndMins(mins) {
   const rhours = Math.floor(hours);
   const minutes = (hours - rhours) * 60;
   const rminutes = Math.round(minutes);
-  return rhours + "hr(s) " + rminutes + " min(s).";
+  return rhours + "hr(s) " + rminutes + " min(s)";
 }

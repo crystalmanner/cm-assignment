@@ -24,26 +24,41 @@
           {{ recipeData.rating.count }} ratings
         </p>
       </div>
-      <div class="recipe-detail-area d-flex">
-        <div class="recipe-normal-info mt-2 d-flex align-center">
+      <div class="recipe-detail-area d-flex mt-2">
+        <div class="recipe-normal-info d-flex align-center">
           <LabelWithImageIcon
             :imageIconSrc="require('../assets/images/clock.svg')"
             imageIconAlt="clock icon"
             :isShowIcon="true"
             :labelTxt="recipeData.preparationTimeMinutes"
-            type="time"
+            type="image"
+            labelType="time"
           />
           <LabelWithImageIcon
             :imageIconSrc="require('../assets/images/cals.svg')"
             imageIconAlt="cals icon"
             :isShowIcon="true"
             :labelTxt="recipeData.details.energy + ' ' + userInfo.energyUnits"
-            type="text"
+            type="image"
+            labelType="text"
             imageIconSize="12px"
             class="ml-3"
           />
         </div>
-        <div class="recipe-nutrient-info"></div>
+        <div class="recipe-nutrient-info ml-auto d-flex align-item">
+          <LabelWithImageIcon
+            v-for="(nutrient, index) in nutrients"
+            :key="index"
+            :isShowIcon="true"
+            :labelTxt="
+              recipeData.details.nutrients[nutrient] +
+                recipeData.details.units[nutrient]
+            "
+            type="custom"
+            :nutrientType="nutrient"
+            labelType="text"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -68,6 +83,9 @@ export default {
     StarRating,
     LabelWithImageIcon
   },
+  data: () => ({
+    nutrients: ["carbs", "proteins", "fats"]
+  }),
   methods: {
     handleClickRecipeCard(event, id) {
       console.log(event.target, `${"recipe card " + id + " clicked"}`);
