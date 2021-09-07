@@ -9,6 +9,7 @@ module.exports = () => ({
     {
       id: "1",
       isPremium: true,
+      isFavorite: true,
       isPublished: true,
       isDeleted: false,
       status: "ok",
@@ -50,6 +51,7 @@ module.exports = () => ({
     {
       id: "2",
       isPremium: false,
+      isFavorite: false,
       isPublished: true,
       isDeleted: false,
       status: "ok",
@@ -90,6 +92,7 @@ module.exports = () => ({
     {
       id: "3",
       isPremium: true,
+      isFavorite: false,
       isPublished: true,
       isDeleted: false,
       status: "ok",
@@ -130,6 +133,7 @@ module.exports = () => ({
     {
       id: "4",
       isPremium: true,
+      isFavorite: true,
       isPublished: true,
       isDeleted: false,
       status: "ok",

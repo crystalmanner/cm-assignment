@@ -9,7 +9,7 @@
         />
       </div>
       <h2 class="text-center">Carb Manager Dev Assignment</h2>
-      <div class="d-flex space-between">
+      <div class="d-flex space-evenly">
         <PremiumRecipeCard
           v-for="recipe in recipes"
           :key="recipe.id"

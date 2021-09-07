@@ -29,6 +29,14 @@
 /*
   spacing css
 */
+.right-3 {
+  right: 16px;
+}
+
+.top-3 {
+  top: 16px;
+}
+
 .my-0 {
   margin-top: 0;
   margin-bottom: 0;
@@ -101,6 +109,10 @@
 
 .space-between {
   justify-content: space-between;
+}
+
+.space-evenly {
+  justify-content: space-evenly;
 }
 
 .text-center {

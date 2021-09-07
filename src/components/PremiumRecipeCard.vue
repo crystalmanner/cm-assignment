@@ -6,7 +6,13 @@
     <div
       class="recipe-image-area position-relative"
       :style="{ 'background-image': 'url(' + recipeData.images[0].url + ')' }"
-    ></div>
+    >
+      <img
+        alt="heart icon"
+        :src="require('../assets/images/' + getHeartIconUrl + '.svg')"
+        class="position-absolute top-3 right-3"
+      />
+    </div>
     <div class="recipe-body pt-2 px-3 pb-3">
       <h3 class="recipe-title my-0" :title="recipeData.title">
         {{ recipeData.title }}
@@ -86,6 +92,11 @@ export default {
   data: () => ({
     nutrients: ["carbs", "proteins", "fats"]
   }),
+  computed: {
+    getHeartIconUrl() {
+      return this.recipeData.isFavorite ? "heart" : "heart-outline";
+    }
+  },
   methods: {
     handleClickRecipeCard(event, id) {
       console.log(event.target, `${"recipe card " + id + " clicked"}`);
