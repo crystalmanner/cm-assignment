@@ -1,6 +1,9 @@
 <template>
-  <div class="d-flex align-center">
-    <div v-if="isShowIcon">
+  <div class="d-flex align-center" :style="customStyle">
+    <div
+      v-if="isShowIcon"
+      :style="`${'line-height:' + (imageIconSize || '15px')}`"
+    >
       <img
         v-if="type === 'image'"
         :alt="imageIconAlt || 'svg icon'"
@@ -51,11 +54,14 @@ export default {
       type: String,
       required: true
     },
+    nutrientType: {
+      type: String
+    },
     type: {
       type: String,
       required: true
     },
-    nutrientType: {
+    customStyle: {
       type: String
     },
     imageIconSize: {

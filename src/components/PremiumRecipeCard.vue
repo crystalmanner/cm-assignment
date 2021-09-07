@@ -12,6 +12,19 @@
         :src="require('../assets/images/' + getHeartIconUrl + '.svg')"
         class="position-absolute top-3 right-3"
       />
+      <LabelWithImageIcon
+        v-if="recipeData.isPremium"
+        :imageIconSrc="require('../assets/images/trophy.svg')"
+        imageIconAlt="trophy icon"
+        :isShowIcon="true"
+        labelTxt="Premium Recipe"
+        type="image"
+        labelType="text"
+        labelFontColor="#FFFFFF"
+        imageIconSize="12px"
+        customStyle="border-radius:10px; background:rgba(255,255,255,.3);"
+        class="position-absolute left-2 bottom-2 px-2 py-1"
+      />
     </div>
     <div class="recipe-body pt-2 px-3 pb-3">
       <h3 class="recipe-title my-0" :title="recipeData.title">
@@ -145,6 +158,7 @@ export default {
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      min-height: 40px;
     }
     .recipe-rating-area {
       .vue-star-rating {

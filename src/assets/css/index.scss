@@ -29,6 +29,15 @@
 /*
   spacing css
 */
+
+.left-2 {
+  left: 8px;
+}
+
+.bottom-2 {
+  bottom: 8px;
+}
+
 .right-3 {
   right: 16px;
 }
@@ -98,9 +107,19 @@
   padding-top: 8px;
 }
 
+.px-2 {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
 .px-3 {
   padding-left: 16px;
   padding-right: 16px;
+}
+
+.py-1 {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .pb-3 {
