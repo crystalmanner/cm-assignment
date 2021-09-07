@@ -1,12 +1,12 @@
 <template>
-  <div>{{ id }}</div>
+  <div>{{ recipeData.title }}</div>
 </template>
 
 <script>
 export default {
   props: {
-    id: {
-      type: String,
+    recipeData: {
+      type: Object,
       required: true
     }
   }

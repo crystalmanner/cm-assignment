@@ -5,19 +5,19 @@
         <img alt="Carb Manager" src="./assets/cm-logo.svg" class="cm-logo" />
       </div>
       <h2>Carb Manager Dev Assignment</h2>
-      <p>See the README file for assignment requirements.</p>
-
-      <ul>
-        <li v-for="recipe in recipes" :key="recipe" class="premium-recipe">
-          <PremiumRecipeCard :id="recipe" />
-        </li>
-      </ul>
+      <div>
+        <div v-for="recipe in recipes" :key="recipe.id" class="premium-recipe">
+          <PremiumRecipeCard :recipeData="recipe" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import PremiumRecipeCard from "./components/PremiumRecipeCard.vue";
+import * as Request from "@/services/request.js";
+import { RECIPES, USER_INFO } from "@/endpoints";
 
 export default {
   name: "App",
@@ -27,8 +27,42 @@ export default {
   },
 
   data: () => ({
-    recipes: ["Premium", "recipes", "list", "goes", "here"]
-  })
+    userInfo: {},
+    recipes: [],
+    error: null
+  }),
+
+  created() {
+    this.fetchUserInfo();
+    this.fetchRecipes();
+  },
+
+  mounted() {},
+
+  methods: {
+    fetchUserInfo() {
+      Request.get(USER_INFO)
+        .then(res => {
+          console.log(res, "userinfo");
+          this.userInfo = res;
+        })
+        .catch(err => {
+          this.error = err.data;
+          console.log(err.data, "err.data");
+        });
+    },
+    fetchRecipes() {
+      Request.get(RECIPES)
+        .then(res => {
+          console.log(res, "recipes");
+          this.recipes = res;
+        })
+        .catch(err => {
+          this.error = err.data;
+          console.log(err.data, "err.data");
+        });
+    }
+  }
 };
 </script>
 
@@ -56,13 +90,5 @@ export default {
 .cm-container {
   max-width: 960px;
   margin: auto;
-}
-
-/** Remove these styles when done */
-.premium-recipe {
-  margin-top: 24px;
-  border: 2px dashed red;
-  padding: 16px;
-  list-style: none;
 }
 </style>
