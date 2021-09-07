@@ -9,13 +9,16 @@
         />
       </div>
       <h2 class="text-center">Carb Manager Dev Assignment</h2>
-      <div class="d-flex space-evenly">
+      <div class="d-flex space-evenly" v-if="!error">
         <PremiumRecipeCard
           v-for="recipe in recipes"
           :key="recipe.id"
           :recipeData="recipe"
           :userInfo="userInfo"
         />
+      </div>
+      <div class="error-msg text-center" v-else>
+        {{ error }}
       </div>
     </div>
   </div>
@@ -36,15 +39,13 @@ export default {
   data: () => ({
     userInfo: {},
     recipes: [],
-    error: null
+    error: ""
   }),
 
   created() {
     this.fetchUserInfo();
     this.fetchRecipes();
   },
-
-  mounted() {},
 
   methods: {
     fetchUserInfo() {
@@ -53,8 +54,7 @@ export default {
           this.userInfo = res;
         })
         .catch(err => {
-          this.error = err.data;
-          console.log(err.data, "err.data");
+          this.error = err.msg;
         });
     },
     fetchRecipes() {
@@ -63,8 +63,7 @@ export default {
           this.recipes = res;
         })
         .catch(err => {
-          this.error = err.data;
-          console.log(err.data, "err.data");
+          this.error = err.msg;
         });
     }
   }

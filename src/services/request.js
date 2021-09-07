@@ -44,9 +44,7 @@ function makeRequest(method, url, options) {
     error => {
       return Promise.reject({
         status: "error",
-        data: {
-          error
-        }
+        msg: error.message
       });
     }
   );
